@@ -20,7 +20,7 @@ function Feed({ selectedOption }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const postsPerPage = 5;
+  const postsPerPage = 10;
 
   useEffect(() => {
     async function getQuestions() {
