@@ -49,7 +49,7 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
+    <div class="bg-gradient-to-r from-teal-300 via-indigo-400 to-purple-300 w-full">
       <motion.div
         className="flex items-center justify-center min-h-screen"
         initial="hidden"
@@ -65,7 +65,7 @@ function Login() {
               src="https://video-public.canva.com/VAD8lt3jPyI/v/ec7205f25c.gif"
               alt="logo"
               initial={{ opacity: 0, scale: 0.5 }}
-              className="object-contain"
+              className="object-contain mb-2"
               width={200}
               animate={{
                 opacity: 1,
@@ -75,11 +75,7 @@ function Login() {
             />
             {/* <img src={logo} className="" width={380} /> */}
           </div>
-          <div>
-            <p className="text-2xl mb-2 font-medium">
-              Note: Student can directly login without registration
-            </p>
-          </div>
+
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             className="flex flex-row gap-6"
@@ -91,19 +87,22 @@ function Login() {
           >
             <Button
               onClick={handleSubmit}
-              className="btn-login bg-[#FF3131] hover:bg-green-400 capitalize"
+              className="btn-login bg-black hover:bg-green-400 capitalize"
               size="lg"
             >
               STUDENT LOGIN
             </Button>
             <Button
               onClick={openDrawer}
-              className="btn-login bg-[#69418B] hover:bg-green-400 capitalize"
+              className="btn-login bg-black hover:bg-green-400 capitalize"
               size="lg"
             >
               TEACHER LOGIN/REGISTRATION
             </Button>
           </motion.div>
+          <p className="text-xl m-2 font-medium">
+            Students can directly login without registration.
+          </p>
         </motion.div>
       </motion.div>
 

@@ -36,7 +36,7 @@ function Widget() {
           <WidgetContent />
         </div>
       </div>
-      <div className="widget w-full">
+      <div className="widget w-full mt-8">
         <div className="widget__header">
           <h5 className="flex flex-row items-center gap-1">
             Notes and Old Questions
