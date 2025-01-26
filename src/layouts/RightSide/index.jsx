@@ -5,6 +5,7 @@ import { IoHeart } from "react-icons/io5";
 import notification from "../../assets/bell3d.png";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../feature/userSlice";
+import Notes from "./Notes.jsx";
 
 function Widget() {
   const user = useSelector(selectUser);
@@ -33,6 +34,16 @@ function Widget() {
         </div>
         <div className="widget__contents">
           <WidgetContent />
+        </div>
+      </div>
+      <div className="widget w-full">
+        <div className="widget__header">
+          <h5 className="flex flex-row items-center gap-1">
+            Notes and Old Questions
+          </h5>
+        </div>
+        <div className="widget__contents">
+          <Notes />
         </div>
       </div>
     </div>

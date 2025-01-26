@@ -31,7 +31,8 @@ function TotalRoutes() {
             role:
               authUser.uid === "Rw5RRuLhgfbEwzJg1BiHj7QmrX42" ||
               authUser.uid === "8ZI2RQIph2c06LBNqeoDAbFBhDo2" ||
-              authUser.uid === "X4zwd8gmoSWuU4sJO06ZLVyX3RJ3"
+              authUser.uid === "X4zwd8gmoSWuU4sJO06ZLVyX3RJ3" ||
+              authUser.uid === "E1kNP3BBnIYckqK6gxRzrRnT9RS2"
                 ? "Admin"
                 : "",
           })
