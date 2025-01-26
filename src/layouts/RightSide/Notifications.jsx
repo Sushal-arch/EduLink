@@ -53,7 +53,7 @@ function Notification() {
       ) : (
         questions.slice(0, 5).map((question) => (
           <>
-            <div key={question._id} className="flex flex-row p-2">
+            <div key={question._id} className="flex flex-row items-center p-2">
               {console.log("Question", question)}
               <img
                 src={
@@ -62,9 +62,9 @@ function Notification() {
                     : BrokenImg
                 }
                 alt="user_photo"
-                className="rounded-full w-12 h-12"
+                className="rounded-full w-12 h-12 mr-2"
               />
-              <div className="widget__contentTitle">
+              <div className="">
                 {/* <h5>{`${
                   question?.question?.postedBy || question.postedBy
                 } posted question of ${
@@ -77,20 +77,34 @@ function Notification() {
                   minute: "2-digit",
                 })}`}</h5> */}
 
-                <h5>{`${
-                  question?.question?.postedBy || question.postedBy
-                } posted question of ${
-                  question?.question?.questionSubject ||
-                  question.questionSubject
-                } on ${new Date(
-                  question.createdAt || question?.question?.createdAt
-                ).toLocaleDateString("en-CA")} at ${new Date(
-                  question.createdAt || question?.question?.createdAt
-                ).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  hour12: true,
-                })}`}</h5>
+                <h5 className="text-base">
+                  <span>
+                    {`${question?.question?.postedBy || question.postedBy}`}
+                  </span>{" "}
+                  posted question of{" "}
+                  <span className="font-semibold">
+                    {`${
+                      question?.question?.questionSubject ||
+                      question.questionSubject
+                    }`}
+                  </span>{" "}
+                  on{" "}
+                  <span className="font-light inline">
+                    {new Date(
+                      question.createdAt || question?.question?.createdAt
+                    ).toLocaleDateString("en-CA")}
+                  </span>
+                  {" at "}
+                  <span className="font-light inline">
+                    {new Date(
+                      question.createdAt || question?.question?.createdAt
+                    ).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
+                  </span>
+                </h5>
               </div>
             </div>
             <hr className="border" />

@@ -14,8 +14,8 @@ function Widget() {
       {(user?.type === "teacher" || user?.role === "Admin") && (
         <div className="widget mb-8 w-full max-h-[400px] overflow-y-auto">
           <div className="widget__header">
-            <h5 className="flex flex-row items-center gap-1 font-semibold">
-              <span className="text-xl">Notifications</span>
+            <h5 className="flex flex-row items-center gap-1 font-medium">
+              <span className="text-lg">Notifications</span>
               <img src={notification} width={20} />
             </h5>
           </div>

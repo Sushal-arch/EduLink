@@ -9,6 +9,7 @@ import makeAnimated from "react-select/animated";
 import { ToastContainer, toast } from "react-toastify";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { auth } from "../../../firebase";
+import logo from "../../../assets/logo-black.png";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -167,7 +168,7 @@ const TeacherDrawer = ({ open, onClose }) => {
                 className="text-center text-[#69418B] w-full flex items-center justify-center gap-4"
               >
                 <span className="text-2xl">Login</span>
-                <img src={Logo} />
+                {/* <img src={logo} /> */}
               </Typography>
               <IoCloseOutline
                 onClick={onClose}

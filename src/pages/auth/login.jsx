@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../firebase";
 import { Button } from "@material-tailwind/react";
-import logo from "../../assets/newLogo.svg";
+import logo from "../../assets/logo-black.png";
 import TeacherDrawer from "./Teacher";
 function Login() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -73,7 +73,7 @@ function Login() {
                 transition: { type: "spring", stiffness: 200 },
               }}
             />
-            <img src={logo} className="" width={380} />
+            {/* <img src={logo} className="" width={380} /> */}
           </div>
           <div>
             <p className="text-2xl mb-2 font-medium">

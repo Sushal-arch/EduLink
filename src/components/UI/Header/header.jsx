@@ -381,14 +381,14 @@ function Header() {
                 boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
               }}
               transition={{ duration: 0.3 }}
-              className="shadow-2xl p-8 rounded-lg border border-transparent bg-gradient-to-r from-[#94C4FC] to-[#03A9F5]"
+              className="p-8"
             >
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center justify-between gap-8">
                 <motion.p
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 1.2 }}
-                  className="text-2xl font-bold text-[#69418B]"
+                  className="text-2xl font-bold text-[#69418B] text-left"
                 >
                   Profile Details
                 </motion.p>
@@ -404,6 +404,7 @@ function Header() {
                   whileHover={{ rotate: 10 }}
                   src={user?.photo ? user?.photo : ProfileLogo}
                   className="rounded-full border border-transparent cursor-pointer"
+                  style={{ width: "80px", height: "80px" }} // Adjust size if needed
                 />
               </div>
               <>
@@ -411,12 +412,12 @@ function Header() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.5, delay: 0.1 }}
-                  className="flex gap-2"
+                  className="flex gap-2 text-left"
                 >
                   <motion.h2 className="font-semibold text-[#69418B]">
                     Name:
                   </motion.h2>
-                  <motion.span className="font-bold text-[#FF3131]">
+                  <motion.span className="font-semibold text-black">
                     {user?.userName}
                   </motion.span>
                 </motion.div>
@@ -424,12 +425,12 @@ function Header() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.6, delay: 0.2 }}
-                  className="flex gap-2"
+                  className="flex gap-2 text-left"
                 >
                   <motion.h2 className="font-semibold text-[#69418B]">
                     Email:
                   </motion.h2>
-                  <motion.span className="font-bold text-[#FF3131]">
+                  <motion.span className="font-semibold text-black">
                     {user?.email}
                   </motion.span>
                 </motion.div>
@@ -437,12 +438,12 @@ function Header() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.7, delay: 0.3 }}
-                  className="flex gap-2"
+                  className="flex gap-2 text-left"
                 >
                   <motion.h2 className="font-semibold text-[#69418B]">
                     {user?.role === "Admin" ? "Role:" : "Type:"}
                   </motion.h2>
-                  <motion.span className="font-bold text-[#FF3131]">
+                  <motion.span className="font-semibold text-black">
                     {user?.role === "Admin" ? user?.role : user?.type}
                   </motion.span>
                 </motion.div>
