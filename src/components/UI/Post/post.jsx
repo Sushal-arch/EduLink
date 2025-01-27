@@ -55,13 +55,36 @@ function Post({ post }) {
   const [imagePreview, setImagePreview] = useState(null);
   const [subjects, setSubjects] = useState([]);
   const [clickedPost, setClickedPost] = useState(null);
+  const [upvotes, setUpvotes] = useState(0);
+  const [downvotes, setDownvotes] = useState(0);
+  const [userVote, setUserVote] = useState(null);
+
+  const handleUpvote = () => {
+    if (userVote === "upvote") {
+      setUpvotes(upvotes - 1); // Remove upvote
+      setUserVote(null);
+    } else {
+      setUpvotes(upvotes + 1); // Add upvote
+      if (userVote === "downvote") setDownvotes(downvotes - 1); // Remove downvote if it exists
+      setUserVote("upvote");
+    }
+  };
+
+  const handleDownvote = () => {
+    if (userVote === "downvote") {
+      setDownvotes(downvotes - 1);
+      setUserVote(null);
+    } else {
+      setDownvotes(downvotes + 1); // Add downvote
+      if (userVote === "upvote") setUpvotes(upvotes - 1);
+      setUserVote("downvote");
+    }
+  };
   const openEditModal = (post) => {
     setClickedPost(post);
     setIsEditModalOpen(true);
-
-    // console.log(clickedPost, isEditModalOpen);
   };
-  // console.log("POST11", post);
+
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
@@ -632,7 +655,7 @@ function Post({ post }) {
             >
               Listen <Volume2 size={16} />
             </Button>
-            <Modal
+            {/* <Modal
               open={isModalOpen}
               closeIcon={<IoClose />}
               onClose={() => setIsModalOpen(false)}
@@ -683,16 +706,68 @@ function Post({ post }) {
                   Add Answer
                 </button>
               </div>
+            </Modal> */}
+
+            <Modal
+              open={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              center
+              closeOnOverlayClick={false}
+              styles={{
+                overlay: {
+                  height: "auto",
+                },
+              }}
+            >
+              <div className="modal__question">
+                <h1>{post?.questionName}</h1>
+                <p>
+                  Asked by <span className="name">{post?.postedBy}</span> on{" "}
+                  <span className="name">
+                    {new Date(post?.createdAt).toLocaleString()}
+                  </span>
+                </p>
+
+                {/* Conditional rendering for image */}
+                {post?.questionImage ? (
+                  <img
+                    src={post.questionImage} // Use the Cloudinary URL from post.questionImage
+                    alt="Question Image"
+                    style={{
+                      maxWidth: "100%",
+                      borderRadius: "8px",
+                      marginTop: "16px",
+                    }}
+                  />
+                ) : (
+                  <p style={{ marginTop: "16px", color: "#888" }}>
+                    No image available for this question.
+                  </p>
+                )}
+              </div>
+
+              <div className="modal__answer">
+                <ReactQuill
+                  value={answer}
+                  onChange={handleQuill}
+                  placeholder="Enter your answer"
+                />
+              </div>
+
+              <div className="modal__button">
+                <button
+                  className="cancel"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button onClick={handleSubmit} type="submit" className="add">
+                  Add Answer
+                </button>
+              </div>
             </Modal>
           </div>
           {post && post.questionImage && (
-            // <img
-            //   src={post.questionImage && imgURL + post.questionImage}
-            //   alt="url"
-            //   style={{ maxWidth: "100%" }}
-            //   onClick={openImageModal}
-            // />
-
             <img
               src={post.questionImage} // Use the Cloudinary URL directly
               alt="Question Image"
@@ -700,7 +775,6 @@ function Post({ post }) {
               onClick={openImageModal} // Opens the image in a modal
             />
           )}
-
           <Modal
             open={imageModal}
             closeIcon={Close}
@@ -873,33 +947,41 @@ function Post({ post }) {
                     className="post-answer"
                   >
                     <div>{ReactHtmlParser(_a?.answer)}</div>
-                    {/* <Button
-                      onClick={() => {
-                        const plainText = _a?.answer
-                          ? _a.answer.replace(/<[^>]+>/g, "").trim()
-                          : "No answer available";
+                    <div className="post__footerAction">
+                      {/* Upvote Section */}
+                      <div className="flex flex-row items-center">
+                        <span className="text-sm font-bold text-green-500">
+                          {upvotes}
+                        </span>
+                        <Tooltip content="Up vote">
+                          <p
+                            onClick={handleUpvote}
+                            className={`cursor-pointer ${
+                              userVote === "upvote" ? "text-blue-500" : ""
+                            }`}
+                          >
+                            <IoArrowUp className="text-green-400" />
+                          </p>
+                        </Tooltip>
+                      </div>
 
-                        // Speak the plain text
-                        const utterance = new SpeechSynthesisUtterance(
-                          plainText
-                        );
-                        window.speechSynthesis.speak(utterance);
-                      }}
-                      style={{
-                        padding: "4px 8px", // Smaller padding for a compact button
-                        fontSize: "10px", // Smaller font size
-                        backgroundColor: "#94c4fc",
-                        color: "white",
-                        borderRadius: "4px",
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "4px",
-                      }}
-                      className="hover:bg-[#74A9E0]"
-                    >
-                      Listen <Volume2 size={14} />
-                    </Button> */}
+                      {/* Downvote Section */}
+                      <div className="flex flex-row items-center">
+                        <Tooltip content="Down vote">
+                          <p
+                            onClick={handleDownvote}
+                            className={`cursor-pointer ${
+                              userVote === "downvote" ? "text-red-500" : ""
+                            }`}
+                          >
+                            <IoArrowDown className="text-red-400" />
+                          </p>
+                        </Tooltip>
+                        <span className="text-sm font-bold text-red-500">
+                          {downvotes}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -922,83 +1004,6 @@ function Post({ post }) {
             )}
           </div>
         </div>
-
-        {/* <div>
-          <p
-            style={{
-              color: "rgba(0,0,0,0.5)",
-              fontSize: "12px",
-              fontWeight: "bold",
-              margin: "10px 0",
-              cursor: sortedAnswers.length > 0 ? "pointer" : "default",
-              textDecoration: sortedAnswers.length > 0 ? "underline" : "none",
-            }}
-            onClick={() => {
-              if (sortedAnswers.length > 0) {
-                setShowAll(!showAll);
-              }
-            }}
-          >
-            {sortedAnswers.length} Answer(s)
-          </p>
-          {showAll && (
-            <div
-              style={{
-                margin: "5px 0px 0px 0px ",
-                padding: "5px 0px 0px 20px",
-                borderTop: "1px solid lightgray",
-              }}
-              className="post__answer"
-            >
-              {sortedAnswers.map((_a, index) => (
-                <div
-                  key={index}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                    padding: "10px 5px",
-                    borderTop: "1px solid lightgray",
-                  }}
-                  className="post-answer-container"
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      marginBottom: "10px",
-                      fontSize: "12px",
-                      fontWeight: 600,
-                      color: "#888",
-                    }}
-                    className="post-answered"
-                  >
-                    <img
-                      src={_a?.user?.photo ? _a?.user?.photo : BrokenImg}
-                      alt="user"
-                      className="rounded-full"
-                      width={40}
-                    />
-                    <div
-                      style={{
-                        margin: "0px 10px",
-                      }}
-                      className="post-info"
-                    >
-                      <p>{_a?.user?.userName}</p>
-                      <span>
-                        <LastSeen date={_a?.createdAt} />
-                      </span>
-                    </div>
-                  </div>
-                  <div className="post-answer">
-                    {ReactHtmlParser(_a?.answer)}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div> */}
       </div>
       <Modal
         open={deleteConfirmModal}
