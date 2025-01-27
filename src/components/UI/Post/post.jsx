@@ -65,7 +65,9 @@ function Post({ post }) {
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
-        const response = await axios.get("http://localhost:90/api/subjects");
+        const response = await axios.get(
+          "https://edulink-backend-zx7r.onrender.com/api/subjects"
+        );
         setSubjects(response.data.data);
       } catch (error) {
         console.error("Error fetching subjects:", error);
@@ -87,7 +89,7 @@ function Post({ post }) {
     const checkVoteStatus = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:90/api/votes/check`,
+          `https://edulink-backend-zx7r.onrender.com/api/votes/check`,
           { params: { questionId: post?._id, userId: user?._id } }
         );
         setVoted(response.data.voteType);
@@ -119,7 +121,11 @@ function Post({ post }) {
         }),
       };
       try {
-        await axios.post("http://localhost:90/api/answers", body, config);
+        await axios.post(
+          "https://edulink-backend-zx7r.onrender.com/api/answers",
+          body,
+          config
+        );
         setIsModalOpen(false);
         toast.success("Answer added successfully");
         setTimeout(() => {
@@ -134,7 +140,7 @@ function Post({ post }) {
 
   const handleVote = async (voteType) => {
     try {
-      const url = `http://localhost:90/api/votes/${voteType}`;
+      const url = `https://edulink-backend-zx7r.onrender.com/api/votes/${voteType}`;
 
       if (voted === voteType) {
         await axios.delete(url, {
@@ -180,7 +186,7 @@ function Post({ post }) {
     setDeleteConfirmModal(false);
     try {
       const response = await axios.delete(
-        `http://localhost:90/api/questions/${post?._id}`
+        `https://edulink-backend-zx7r.onrender.com/api/questions/${post?._id}`
       );
       if (response.status == 200) {
         toast.success("Question deleted successfully");
@@ -265,7 +271,7 @@ function Post({ post }) {
 
     try {
       const response = await axios.put(
-        `http://localhost:90/api/questions/${clickedPost._id}`,
+        `https://edulink-backend-zx7r.onrender.com/api/questions/${clickedPost._id}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -296,7 +302,8 @@ function Post({ post }) {
       return bVotes - aVotes;
     }) || [];
 
-  const imgURL = "http://localhost:90/img/questionImages/";
+  const imgURL =
+    "https://edulink-backend-zx7r.onrender.com/img/questionImages/";
   return (
     <>
       <ToastContainer autoClose={2800} />

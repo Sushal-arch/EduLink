@@ -25,7 +25,7 @@ function Notification() {
 
   useEffect(() => {
     console.log("Fetching data from API...");
-    fetch("http://localhost:90/api/questions")
+    fetch("https://edulink-backend-zx7r.onrender.com/api/questions")
       .then((response) => response.json())
       .then((data) => {
         console.log("Data received123:", data); // Check the data here

@@ -25,7 +25,7 @@ function Feed({ selectedOption }) {
   useEffect(() => {
     async function getQuestions() {
       try {
-        let url = "http://localhost:90/api/questions";
+        let url = "https://edulink-backend-zx7r.onrender.com/api/questions";
         if (selectedOption === "myPosts" && uid) {
           url += `?uid=${uid}`;
         } else if (selectedOption) {
