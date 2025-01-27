@@ -1,10 +1,10 @@
 import { useState } from "react";
-import "./Login.css";
+import "./login.css";
 import { motion } from "framer-motion";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../firebase";
 import { Button } from "@material-tailwind/react";
-import logo from "../../assets/logo-black.png";
+// import logo from "../../assets/logo-black.png";
 import TeacherDrawer from "./Teacher";
 function Login() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -49,7 +49,7 @@ function Login() {
   };
 
   return (
-    <div class="bg-gradient-to-r from-teal-300 via-indigo-400 to-purple-300 w-full">
+    <div className="bg-gradient-to-r from-teal-300 via-indigo-400 to-purple-300 w-full">
       <motion.div
         className="flex items-center justify-center min-h-screen"
         initial="hidden"
