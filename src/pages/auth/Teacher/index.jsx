@@ -168,7 +168,7 @@ const TeacherDrawer = ({ open, onClose }) => {
                 className="text-center text-[#69418B] w-full flex items-center justify-center gap-4"
               >
                 <span className="text-2xl">Login</span>
-                {/* <img src={logo} /> */}
+                <img src={logo} />
               </Typography>
               <IoCloseOutline
                 onClick={onClose}
@@ -284,7 +284,7 @@ const TeacherDrawer = ({ open, onClose }) => {
                 />
 
                 <span className="text-[#FF914D] ml-4">Register</span>
-                <img src={Logo} className="-ml-7" />
+                <img src={logo} className="ml-7" />
 
                 <div />
               </Typography>
