@@ -92,9 +92,7 @@ function Header() {
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
-        const response = await axios.get(
-          "https://edulink-backend-zx7r.onrender.com/api/subjects"
-        );
+        const response = await axios.get("http://localhost:90/api/subjects");
         setSubjects(response.data.data);
       } catch (error) {
         // console.error("Error fetching subjects:", error);
@@ -136,7 +134,7 @@ function Header() {
 
     try {
       const response = await axios.post(
-        "https://edulink-backend-zx7r.onrender.com/api/questions",
+        "http://localhost:90/api/questions",
         body,
         config
       );

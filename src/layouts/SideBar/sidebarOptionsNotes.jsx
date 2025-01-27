@@ -13,9 +13,7 @@ function SidebarOptions({ onSelectOption }) {
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
-        const response = await fetch(
-          "https://edulink-backend-zx7r.onrender.com/api/notes"
-        );
+        const response = await fetch("http://localhost:90/api/notes");
         const data = await response.json();
         setOptions(data?.data);
 
