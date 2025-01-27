@@ -307,7 +307,7 @@ function Post({ post }) {
             width={48}
             className="rounded-full"
           />
-          <h4>{post?.postedBy}</h4>
+          <h4 className="font-bold">{post?.postedBy}</h4>
           <small className="flex">
             [<LastSeen date={post?.createdAt} />]
           </small>
@@ -512,7 +512,7 @@ function Post({ post }) {
         </div> */}
         <div className="post__body">
           <div className="post__question flex justify-between items-center">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center !font-normal">
               <p>{post?.questionName}</p>
             </div>
             {/* <Button

@@ -1,8 +1,8 @@
 .feed {
   display: flex;
   flex-direction: column;
-  flex: 0.8;
-  margin-left: 220px;
+  flex: 1;
+  margin-left: 143px;
 }
 :root {
   --color-blue: #e8f9ff60;
