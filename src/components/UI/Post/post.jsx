@@ -873,7 +873,7 @@ function Post({ post }) {
                     className="post-answer"
                   >
                     <div>{ReactHtmlParser(_a?.answer)}</div>
-                    <Button
+                    {/* <Button
                       onClick={() => {
                         const plainText = _a?.answer
                           ? _a.answer.replace(/<[^>]+>/g, "").trim()
@@ -899,7 +899,7 @@ function Post({ post }) {
                       className="hover:bg-[#74A9E0]"
                     >
                       Listen <Volume2 size={14} />
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               ))}
