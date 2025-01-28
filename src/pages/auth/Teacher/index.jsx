@@ -400,7 +400,6 @@ const TeacherDrawer = ({ open, onClose }) => {
                   onClick={() => handleChangeUI("login")}
                 />
                 <span className="text-black ml-4">Forgot Password</span>
-                <img src={Logo} />
                 <div />
               </Typography>
               <IoCloseOutline

@@ -5,7 +5,7 @@ import Loading from "../components/UI/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { login, selectUser } from "../feature/userSlice";
-import { selectTeacher } from "../feature/teacherSlice";
+import { selectTeacher } from "../feature/teacherSlice"; 
 import { auth } from "../firebase";
 import Main from "../layouts/Main";
 import Login from "../pages/auth/login";
